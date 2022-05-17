@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'gosu'
 require './input_functions'
-require './textfields'
 
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
@@ -113,7 +112,6 @@ class Track
     end
 end
 
-  
 class Album
     attr_accessor :album_iD, :title, :artist, :artwork, :genre, :track
     def initialize (album_iD, title, artist, artwork, genre, track)
@@ -132,7 +130,6 @@ class Song
        @song = Gosu::Song.new(file)
    end
 end
-
 
 class Application < Gosu::Window
     def initialize
@@ -382,8 +379,8 @@ class Application < Gosu::Window
 
     def reset()
         wfile = File.new('txt/genre_showed.txt','w')
-                wfile.puts 0
-                wfile.close
+        wfile.puts 0
+        wfile.close
     end
 
     def save_current_review(albums)
@@ -441,6 +438,7 @@ class Application < Gosu::Window
         end
         rfile.close
     end
+
     def current_albums_genre()
         list = @current_genre
         case @page_call
@@ -519,7 +517,7 @@ class Application < Gosu::Window
         end
         wfile.close()
     end
-###abcdef
+
     def area_clicked(mouse_x, mouse_y)
         case @user
         when :pick
@@ -626,26 +624,6 @@ class Application < Gosu::Window
             if ((mouse_x > 46 && mouse_x < 141) && (mouse_y > 584 && mouse_y < 596))
                 @option = 4
                 master(albums)
-            end
-            if ((mouse_x > 46 && mouse_x < 141) && (mouse_y > 604 && mouse_y < 616))
-                @option = 5
-                master(albums)
-                case @page_call
-                when :review
-                    @albums_location = 'txt/music_file.txt'
-                when :approved
-                    @albums_location = 'txt/approved.txt'
-                when :denied
-                    @albums_location = 'txt/denied.txt'
-                end                #case @page_call
-                #when :review
-                #    @albums_location = 'txt/music_file.txt'
-                #when :approved
-                #    @albums_location = 'txt/approved.txt'
-                #when :denied
-                #    @albums_location = 'txt/denied.txt'
-                #end
-                
             end
 
             ####
@@ -842,18 +820,18 @@ class Application < Gosu::Window
 
     def update
         albums = load_album()
-        case @option
-        when 5
-            master(albums)
-            case @page_call
-            when :review
-                @albums_location = 'txt/music_file.txt'
-            when :approved
-                @albums_location = 'txt/approved.txt'
-            when :denied
-                @albums_location = 'txt/denied.txt'
-            end  
-        end
+        #case @option
+        #when 5
+        #    master(albums)
+        #    case @page_call
+        #    when :review
+        #        @albums_location = 'txt/music_file.txt'
+        #    when :approved
+        #        @albums_location = 'txt/approved.txt'
+        #    when :denied
+        #        @albums_location = 'txt/denied.txt'
+        #    end  
+        #end
         if @song
             if @song.playing?
                 if button_down?(Gosu::KbSpace)
@@ -880,6 +858,7 @@ class Application < Gosu::Window
             end
         when :curator
             curator_draw()
+            
             @font.draw("LOGOUT", 30, 695, ZOrder::UI, 1, 1, @font_color)
         end
     end
@@ -918,8 +897,7 @@ class Application < Gosu::Window
             1. POP
             2. CLASSIC
             3. JAZZ
-            4. ROCK
-            5. ALL", -18, 500, ZOrder::UI, 0.8, 0.8, @font_color)
+            4. ROCK", -18, 500, ZOrder::UI, 0.8, 0.8, @font_color)
         @darkmode_ico.draw(1240,670,ZOrder::PLAYER,0.05,0.05)
         albums = load_album()
         case @page_call

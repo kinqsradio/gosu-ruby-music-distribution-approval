@@ -625,26 +625,6 @@ class Application < Gosu::Window
                 @option = 4
                 master(albums)
             end
-            if ((mouse_x > 46 && mouse_x < 141) && (mouse_y > 604 && mouse_y < 616))
-                @option = 5
-                master(albums)
-                case @page_call
-                when :review
-                    @albums_location = 'txt/music_file.txt'
-                when :approved
-                    @albums_location = 'txt/approved.txt'
-                when :denied
-                    @albums_location = 'txt/denied.txt'
-                end                #case @page_call
-                #when :review
-                #    @albums_location = 'txt/music_file.txt'
-                #when :approved
-                #    @albums_location = 'txt/approved.txt'
-                #when :denied
-                #    @albums_location = 'txt/denied.txt'
-                #end
-                
-            end
 
             ####
             #### Making click box for each albums
@@ -840,18 +820,18 @@ class Application < Gosu::Window
 
     def update
         albums = load_album()
-        case @option
-        when 5
-            master(albums)
-            case @page_call
-            when :review
-                @albums_location = 'txt/music_file.txt'
-            when :approved
-                @albums_location = 'txt/approved.txt'
-            when :denied
-                @albums_location = 'txt/denied.txt'
-            end  
-        end
+        #case @option
+        #when 5
+        #    master(albums)
+        #    case @page_call
+        #    when :review
+        #        @albums_location = 'txt/music_file.txt'
+        #    when :approved
+        #        @albums_location = 'txt/approved.txt'
+        #    when :denied
+        #        @albums_location = 'txt/denied.txt'
+        #    end  
+        #end
         if @song
             if @song.playing?
                 if button_down?(Gosu::KbSpace)
@@ -878,6 +858,7 @@ class Application < Gosu::Window
             end
         when :curator
             curator_draw()
+            
             @font.draw("LOGOUT", 30, 695, ZOrder::UI, 1, 1, @font_color)
         end
     end
@@ -916,8 +897,7 @@ class Application < Gosu::Window
             1. POP
             2. CLASSIC
             3. JAZZ
-            4. ROCK
-            5. ALL", -18, 500, ZOrder::UI, 0.8, 0.8, @font_color)
+            4. ROCK", -18, 500, ZOrder::UI, 0.8, 0.8, @font_color)
         @darkmode_ico.draw(1240,670,ZOrder::PLAYER,0.05,0.05)
         albums = load_album()
         case @page_call
