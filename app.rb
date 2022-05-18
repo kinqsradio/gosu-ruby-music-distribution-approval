@@ -584,6 +584,8 @@ class Application < Gosu::Window
             #Click review, approved, denied
             if ((mouse_x > 17 && mouse_x < 93) && (mouse_y > 340 && mouse_y < 352))
                 pause_changing_pg()
+                @option = 5
+                master(albums)
                 @page_call = :review
                 @albums_location = 'txt/music_file.txt'
             end

@@ -1,4 +1,4 @@
-3
+4
 Title test 1
 Artist 1
 artwork/1.jpeg
@@ -16,4 +16,10 @@ Artist 1
 artwork/1.jpeg
 1
 Name 5
+audio/test.wav
+Title test 3
+Artist 3
+artwork/1.jpeg
+2
+Name 3
 audio/test.wav
