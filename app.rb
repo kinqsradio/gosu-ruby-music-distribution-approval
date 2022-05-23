@@ -164,6 +164,7 @@ class Application < Gosu::Window
         @albums_location = 'txt/music_file.txt'
         @status = 'txt/approved.txt'
         @page_call = :not_available
+        @info_page = :review
         @approved_albums_array = Array.new()
         @current_albums_reivew = Array.new()
         @current_genre = Array.new()
@@ -233,7 +234,7 @@ class Application < Gosu::Window
         while i < albums.length && i < (@albums_per_page*(@page+1))
             if albums[i].genre.to_i == option
                 @bmp = Gosu::Image.new(albums[i].artwork)
-                @bmp.draw(@x_pos, @y_pos, z = ZOrder::PLAYER, 0.1, 0.1)
+                @bmp.draw(@x_pos, @y_pos, z = ZOrder::PLAYER)
                 @font.draw("#{albums[i].track.name}", @x_pos+70, @y_pos+5, ZOrder::UI, 0.7, 0.7, @font_color)
                 @font.draw("#{albums[i].artist}", @x_pos+70, @y_pos+25, ZOrder::UI, 0.7, 0.7, Gosu::Color::GRAY)
             end
@@ -587,16 +588,23 @@ class Application < Gosu::Window
                 @option = 5
                 master(albums)
                 @page_call = :review
+                @info_page = :review
                 @albums_location = 'txt/music_file.txt'
             end
             if ((mouse_x > 17 && mouse_x < 125) && (mouse_y > 364 && mouse_y < 376))
                 pause_changing_pg()
+                @option = 5
+                master(albums)
                 @page_call = :approved
+                @info_page = :approved
                 @albums_location = 'txt/approved.txt'
             end
             if ((mouse_x > 17 && mouse_x < 90) && (mouse_y > 388 && mouse_y < 400))
                 pause_changing_pg()
+                @option = 5
+                master(albums)
                 @page_call = :denied
+                @info_page = :denied
                 @albums_location = 'txt/denied.txt'
             end
             #LOGOUT
@@ -663,12 +671,15 @@ class Application < Gosu::Window
                     end
                 end
             when :info
-                if ((mouse_x > 450 && mouse_x < 470) && (mouse_y > 450 && mouse_y < 470))
-                    @status = 'txt/approved.txt'
-                    status_function(albums)           
-                elsif ((mouse_x > 485 && mouse_x < 515) && (mouse_y > 450 && mouse_y < 480))
-                    @status = 'txt/denied.txt'
-                    status_function(albums)  
+                case @info_page
+                when :review
+                    if ((mouse_x > 450 && mouse_x < 470) && (mouse_y > 450 && mouse_y < 470))
+                        @status = 'txt/approved.txt'
+                        status_function(albums)           
+                    elsif ((mouse_x > 485 && mouse_x < 515) && (mouse_y > 450 && mouse_y < 480))
+                        @status = 'txt/denied.txt'
+                        status_function(albums)  
+                    end
                 end
             end
         end   
@@ -779,13 +790,21 @@ class Application < Gosu::Window
         @font.draw("Submission Infomation", 450, 350, ZOrder::UI, 0.8, 0.8, @font_color)
         @font.draw("Artist: #{albums[@album_id].artist}", 450, 370, ZOrder::UI, 0.7, 0.7, @font_color)
         @font.draw("Title: #{albums[@album_id].track.name} ", 450, 390, ZOrder::UI, 0.7, 0.7, @font_color)
-        @font.draw("Genre: " + $genre_names[albums[@album_id].genre.to_i], 450, 410, ZOrder::UI, 0.7, 0.7, @font_color)    
+        @font.draw("Genre: " + $genre_names[albums[@album_id].genre.to_i], 450, 410, ZOrder::UI, 0.7, 0.7, @font_color)  
+        @font.draw("Status: ", 450, 430, ZOrder::UI, 0.7, 0.7, @font_color)  
         draw_button_info()
     end
 
     def draw_button_info()
-        @approved_button.draw(450,450,ZOrder::PLAYER,0.03,0.03) #tick
-        @denied_button.draw(480,445,ZOrder::PLAYER,0.01,0.01) #denied
+        case @info_page
+        when :review
+            @approved_button.draw(450,450,ZOrder::PLAYER,0.03,0.03) #tick
+            @denied_button.draw(480,445,ZOrder::PLAYER,0.01,0.01) #denied
+        when :approved
+            @approved_button.draw(450,450,ZOrder::PLAYER,0.03,0.03) #tick
+        when :denied
+            @denied_button.draw(450,445,ZOrder::PLAYER,0.01,0.01) #denied
+        end
     end
     
 
@@ -844,8 +863,8 @@ class Application < Gosu::Window
     end
 
     def draw()
-        @font.draw("mouse_x: #{mouse_x}", 1000, 0, ZOrder::UI, 0.5, 0.5, @font_color)
-        @font.draw("mouse_y: #{mouse_y}", 1000, 20, ZOrder::UI, 0.5, 0.5, Gosu::Color::BLUE)
+        #@font.draw("mouse_x: #{mouse_x}", 1000, 0, ZOrder::UI, 0.5, 0.5, @font_color)
+        #@font.draw("mouse_y: #{mouse_y}", 1000, 20, ZOrder::UI, 0.5, 0.5, Gosu::Color::BLUE)
         draw_background()
         case @user
         when :pick
@@ -917,14 +936,14 @@ class Application < Gosu::Window
             draw_tracks(albums)
             #@albums_location = 'txt/approved.txt'
             if albums.size > 0
-                @font.draw("Approved: #{albums.size} track", 961, 60, ZOrder::UI, 0.9, 0.9, @font_color) rescue nil
+                @font.draw("Approved: #{albums.size} track", 1100, 675, ZOrder::UI, 0.5, 0.5, @font_color) rescue nil
             end
         when :denied
             #draw_tracks_by_genre(albums,option)
             draw_tracks(albums)
             #@albums_location = 'txt/denied.txt'
             if albums.size > 0
-                @font.draw("Denied: #{albums.size} track", 961, 60, ZOrder::UI, 0.9, 0.9, @font_color) rescue nil
+                @font.draw("Denied: #{albums.size} track", 1100, 675, ZOrder::UI, 0.5, 0.5, @font_color) rescue nil
             end
         end
     end

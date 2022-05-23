@@ -1,25 +1,67 @@
-4
-Title test 1
-Artist 1
-artwork/1.jpeg
-1
-Name 1
-audio/test.wav
-Title test 2
-Artist 2
-artwork/1.jpeg
-1
-Name 2
-audio/test.wav
-Title test 4
-Artist 1
-artwork/1.jpeg
-1
-Name 5
-audio/test.wav
-Title test 3
-Artist 3
-artwork/1.jpeg
+11
+Oh My God (Kean Dysso Remix)
+INNA, Kean Dysso
+artwork/omg.jpeg
 2
-Name 3
-audio/test.wav
+Oh My God (Kean Dysso Remix)
+audio/omg.wav
+Techno Heartbeat
+Mike Gudmann, Lucas Fernandez, Medon
+artwork/techno.png
+2
+Techno Heartbeat
+audio/techno.wav
+Trampoline
+David Guetta
+artwork/tramp.jpeg
+2
+Trampoline
+audio/trampoline.wav
+Sweet Dreams
+Mike Gudmann, Klayden, Shiverz
+artwork/sweetdreams.png
+2
+Sweet Dreams
+audio/sweetdreams.wav
+Middle Of The Night
+Fyex, Daveepa & Milan Garvis
+artwork/middleofthenight.jpeg
+3
+Middle Of The Night
+audio/middle.wav
+In Da Club
+CryJaxx
+artwork/indaclub.jpeg
+4
+In Da Club
+audio/indaclub.wav
+Don't Let Me Down
+The Chainsmokers
+artwork/dlmd.jpg
+1
+Don't Let Me Down
+audio/dlmd.mp3
+Leah
+wrs, IRAIDA
+artwork/leah.png
+1
+Leah
+audio/leah.mp3
+Lucky
+Crystal Rock, Anastasia Rose, Lucky Twice
+artwork/lucky.jpeg
+1
+Lucky
+audio/lucky.wav
+Milkshake
+LittGloss
+artwork/milkshake.jpeg
+1
+Milkshake
+audio/milkshake.wav
+Ella
+Karla
+artwork/karla.jpeg
+1
+Ella
+audio/karla.mp3
