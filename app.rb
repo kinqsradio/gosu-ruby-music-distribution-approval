@@ -620,18 +620,22 @@ class Application < Gosu::Window
 
             #SHOW BY GENRE
             if ((mouse_x > 46 && mouse_x < 141) && (mouse_y > 524 && mouse_y < 536))
+                pause_changing_pg()
                 @option = 1
                 master(albums)
             end
             if ((mouse_x > 46 && mouse_x < 141) && (mouse_y > 544 && mouse_y < 556))
+                pause_changing_pg()
                 @option = 2
                 master(albums)
             end
             if ((mouse_x > 46 && mouse_x < 141) && (mouse_y > 564 && mouse_y < 576))
+                pause_changing_pg()
                 @option = 3
                 master(albums)
             end
             if ((mouse_x > 46 && mouse_x < 141) && (mouse_y > 584 && mouse_y < 596))
+                pause_changing_pg()
                 @option = 4
                 master(albums)
             end
@@ -841,18 +845,6 @@ class Application < Gosu::Window
 
     def update
         albums = load_album()
-        #case @option
-        #when 5
-        #    master(albums)
-        #    case @page_call
-        #    when :review
-        #        @albums_location = 'txt/music_file.txt'
-        #    when :approved
-        #        @albums_location = 'txt/approved.txt'
-        #    when :denied
-        #        @albums_location = 'txt/denied.txt'
-        #    end  
-        #end
         if @song
             if @song.playing?
                 if button_down?(Gosu::KbSpace)
